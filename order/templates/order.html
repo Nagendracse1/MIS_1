@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block head%}
+{% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+     <script src="{% static 'js/jq.js' %}"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+   <script src="{% static 'js/js.js' %}"></script>
+
+<style>
+        table,th,td{
+            border: 1px solid black;
+            border-collapse: collapse;
+            background-color:white;
+        }
+        th{
+         background-color:#97f3f2;
+        }
+        table{
+        margin:auto;
+        }
+        button[type="submit"]{
+        margin:auto;
+        float:center;
+        margin-left: 600px;
+
+        }
+
+    </style>
+{% endblock %}
+
+
+{% block content %}
+
+<center><h1>Place Your Order Details</h1>
+</center><hr>
+
+<form  method="POST" >
+    {% csrf_token %}
+
+
+      <table border="5px" >
+        <tr>
+          <th colspan="3">{{bookform.po_no.label}}: {{bookform.po_no}}</th>
+          <th colspan="3">{{bookform.Purchaser.label}} Name: {{bookform.Purchaser}}</th>
+          <th colspan="4"> Date: {{bookform.po_date}}</th>
+        </tr>
+        <tr>
+            
+
+            <th>Items</th>
+            <th>Items Type</th>
+            <th>Quality</th>
+            <th>Qty</th>
+            <th>Unit</th>
+            <th>Rate/Unit</th>
+            <th>Value</th>
+            <th>Dispatcher</th>
+            <th></th>
+        </tr>
+
+
+{{ formset.management_form }}
+{% for form in formset %}
+
+
+
+<tr class="row form-row space">
+
+   <td>{{form.items}}</td>
+   <td>{{form.items_types}}</td>
+   <td>{{form.quality}}</td>
+   <td>{{form.qty}}</td>
+   <td>{{form.unit}}</td>
+   <td>{{form.rate_per_unit}}</td>
+   <td>{{form.value}}</td>
+   <td>{{form.dispatcher}}</td>
+   <td><button class="btn btn-success add-form-row">+</button></td>
+
+</tr>
+
+</table>
+
+
+
+
+
+
+
+{% endfor %}
+<div class="row spacer">
+
+        <button type="submit" class="btn btn-block btn-primary">Submit</button>
+
+</div>
+</form>
+
+
+
+
+{% endblock %}

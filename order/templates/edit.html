@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+<style>
+        table,th,td{
+            border: 1px solid black;
+            border-collapse: collapse;
+            background-color:white;
+        }
+        th{
+         background-color:#97f3f2;
+        }
+        table{
+        margin:auto;
+        margin-top:40px;
+
+        }
+        button[type="submit"]{
+        margin:auto;
+        float:center;
+        margin-left: 600px;
+
+        }
+
+    </style>
+{% endblock %}
+
+
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+
+ <table border="5px" >
+
+
+
+     <tr>
+
+            <th >PO no</th>
+
+
+            <th>Items</th>
+            <th>Items Type</th>
+            <th>Quality</th>
+            <th>Qty</th>
+            <th>Unit</th>
+            <th>Rate/Unit</th>
+            <th>Value</th>
+            <th>Dispatcher</th>
+            <th>Dispatcher Qty</th>
+            <th>Dispatcher date</th>
+            <th>Total supplied Qty</th>
+            <th>balance Qty</th>
+        </tr>
+
+
+
+
+     <tr></tr>
+
+
+
+
+
+<tr>
+
+
+    <td>{{form.OrderPoAndPurchaser}}</td>
+
+   <td>{{form.items}}</td>
+   <td>{{form.items_types}}</td>
+   <td>{{form.quality}}</td>
+   <td>{{form.qty}}</td>
+   <td>{{form.unit}}</td>
+   <td>{{form.rate_per_unit}}</td>
+   <td>{{form.value}}</td>
+   <td>{{form.dispatcher}}</td>
+
+   <td>{{form.dispatch_qty}}</td>
+   <td>{{form.dispatch_date}}</td>
+   <td>{{form.total_supplied_qty}}</td>
+   <td>{{form.balance_qty}}</td>
+
+
+     </tr>
+
+
+<tr></tr>
+
+
+</table>
+<button type="submit">Submit</button>
+</form>
+
+
+{% endblock %}

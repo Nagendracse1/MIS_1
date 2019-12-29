@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+<style>
+        table{
+            border: 1px solid black;
+            border-collapse: collapse;
+            background-color:white;
+        }
+        th{
+         background-color:#97f3f2;
+        }
+        table{
+        margin:auto;
+        margin-top:40px;
+
+        }
+        button[type="submit"]{
+        margin:auto;
+        float:center;
+        margin-left: 600px;
+
+        }
+
+    </style>
+{% endblock %}
+
+
+{% block content %}
+
+
+
+ <table border="5px" >
+
+
+
+     <tr>
+            <th>S No.</th>
+            <th >PO no</th>
+            <th >Purchaser</th>
+            <th>Po Date</th>
+            <th>Items</th>
+            <th>Items Type</th>
+            <th>Quality</th>
+            <th>Qty</th>
+            <th>Unit</th>
+            <th>Rate/Unit</th>
+            <th>Value</th>
+            <th>Dispatcher</th>
+            <th>Dispatcher Qty</th>
+            <th>Dispatcher date</th>
+            <th>Total supplied Qty</th>
+            <th>balance Qty</th>
+            <th>EDIT</th>
+
+        </tr>
+
+     {% for po in Order_PoAndPurchaser %}
+
+
+     <tr>
+
+    <td >{{forloop.counter}}</td>
+    <td>{{po.po_no}}</td>
+    <td>{{po.Purchaser}}</td>
+    <td>{{po.po_date}}</td>
+    <td colspan="14"></td>
+
+
+     </tr>
+
+
+    {% for detail in po.get_authors %}
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+   <td>{{detail.items}}</td>
+   <td>{{detail.items_types}}</td>
+   <td>{{detail.quality}}</td>
+   <td>{{detail.qty}}</td>
+   <td>{{detail.unit}}</td>
+   <td>{{detail.rate_per_unit}}</td>
+   <td>{{detail.value}}</td>
+   <td>{{detail.dispatcher}}</td>
+   <td>{{detail.dispatch_qty}}</td>
+   <td>{{detail.dispatch_date}}</td>
+   <td>{{detail.total_supplied_qty}}</td>
+   <td>{{detail.balance_qty}}</td>
+   <td><a  href="{% url 'editDispatch' detail.pk %}">edit</a></td>
+
+
+
+     </tr>
+    {% endfor %}
+
+<tr></tr>
+
+{% endfor %}
+</table>
+
+
+
+
+{% endblock %}
